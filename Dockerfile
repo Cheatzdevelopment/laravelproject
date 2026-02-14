@@ -36,3 +36,11 @@ RUN sed -i 's|/var/www/html|/var/www/html/public|g' /etc/apache2/sites-available
 RUN a2enmod rewrite
 
 EXPOSE 80
+
+# ... (កូដចាស់របស់អ្នក) ...
+
+# កំណត់សិទ្ធិឱ្យ file run.sh អាចដំណើរការបាន
+RUN chmod +x /var/www/html/run.sh
+
+# ប្រាប់ Docker ឱ្យដំណើរការ file នេះនៅពេលចាប់ផ្ដើម Server
+CMD ["/var/www/html/run.sh"]
