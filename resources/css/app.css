@@ -1,0 +1,91 @@
+@import 'tailwindcss';
+
+@source '../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php';
+@source '../../storage/framework/views/*.php';
+@source '../**/*.blade.php';
+@source '../**/*.js';
+
+@theme {
+    /* 1. កំណត់ Font ឱ្យស្អាត (Nunito សម្រាប់អក្សរខ្មែរ/អង់គ្លេស) */
+    --font-sans: 'Nunito', 'Instrument Sans', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+
+    /* 2. កំណត់ពណ៌ដែលប្រើញឹកញាប់ (Brand Colors) */
+    --color-primary: #4f46e5;    /* Indigo 600 - ពណ៌គោល */
+    --color-primary-dark: #4338ca; /* Indigo 700 - ពេល Hover */
+    --color-secondary: #10b981;  /* Emerald 500 - ពណ៌បៃតង */
+    --color-surface: #ffffff;    /* ពណ៌ផ្ទៃកាត */
+    --color-background: #f8fafc; /* Slate 50 - ពណ៌ Background វេបសាយ */
+}
+
+/* 3. Custom Components Layer
+   កូដខាងក្រោមនេះនឹងតុបតែង Class របស់ Bootstrap ឱ្យទៅជាស្តាយទំនើបដោយស្វ័យប្រវត្តិ
+*/
+@layer components {
+
+    /* Background របស់វេបសាយ */
+    body {
+        background-color: var(--color-background);
+        @apply antialiased text-slate-700;
+    }
+
+    /* Navbar: បែបកញ្ចក់ថ្លា (Glassmorphism) */
+    .navbar {
+        @apply sticky top-0 z-50 border-b border-gray-200/60 bg-white/80 backdrop-blur-md shadow-sm transition-all;
+    }
+    .navbar-brand {
+        @apply font-bold text-xl tracking-wide text-indigo-600;
+    }
+
+    /* Card: មូលជ្រុង និងមាន Effect ពេលដាក់ Mouse លើ */
+    .card {
+        @apply border-0 rounded-2xl bg-white shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07),0_10px_20px_-2px_rgba(0,0,0,0.04)]
+               transition-all duration-300 ease-out overflow-hidden;
+    }
+
+    /* Hover Effect លើ Card (លើកឡើងលើបន្តិច) */
+    .card:hover {
+        @apply -translate-y-1 shadow-[0_20px_25px_-5px_rgba(0,0,0,0.1),0_10px_10px_-5px_rgba(0,0,0,0.04)] border-indigo-100;
+    }
+
+    /* Header របស់ Card */
+    .card-header {
+        @apply bg-white border-b border-gray-100 font-bold py-4;
+    }
+
+    /* Buttons: ប៊ូតុងបែបទំនើប */
+    .btn {
+        @apply px-5 py-2.5 rounded-xl font-semibold tracking-wide transition-all duration-200 ease-in-out shadow-sm border-0;
+    }
+
+    .btn:active {
+        @apply scale-95; /* ចុចទៅរួញបន្តិច */
+    }
+
+    /* ប៊ូតុង Primary (ពណ៌ស្វាយ) */
+    .btn-primary {
+        background-color: var(--color-primary);
+        @apply text-white shadow-indigo-500/30 hover:shadow-indigo-500/40 hover:-translate-y-0.5;
+    }
+    .btn-primary:hover {
+        background-color: var(--color-primary-dark);
+    }
+
+    /* ប៊ូតុង Outline */
+    .btn-outline-primary {
+        @apply border-2 border-indigo-600 text-indigo-600 hover:bg-indigo-600 hover:text-white;
+    }
+
+    /* Inputs: ប្រអប់សរសេរអក្សរ */
+    .form-control, .form-select {
+        @apply rounded-xl border-gray-200 bg-gray-50 px-4 py-3 text-base outline-none transition-all duration-200;
+    }
+
+    .form-control:focus, .form-select:focus {
+        @apply bg-white border-indigo-500 ring-4 ring-indigo-500/10 shadow-none;
+    }
+
+    /* Badge: ស្លាកសញ្ញា (Stock, Status) */
+    .badge {
+        @apply rounded-lg px-2.5 py-1.5 font-bold uppercase tracking-wider text-[10px];
+    }
+}
