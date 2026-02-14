@@ -13,10 +13,9 @@ class AppServiceProvider extends ServiceProvider
     }
 
     public function boot(): void
-    {
-        // បន្ថែមបន្ទាត់ខាងក្រោមនេះ
-        if (config('app.env') === 'production') {
-            URL::forceScheme('https');
-        }
+{
+    if (config('app.env') === 'production') {
+        URL::forceScheme('https');
     }
+}
 }
